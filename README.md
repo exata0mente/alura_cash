@@ -1,5 +1,5 @@
 ![Status](https://img.shields.io/badge/status-Em%20desenvolvimento-green?style=plastic)
-[![Commits semanais](https://img.shields.io/github/commit-activity/w/exata0mente/alura-cash?style=plastic)](https://github.com/exata0mente/alura-cash/pulse)
+[![Commits semanais](https://img.shields.io/github/commit-activity/w/exata0mente/alura_cash?style=plastic)](https://github.com/exata0mente/alura_cash/pulse)
 
 
 # Challenge: Data Science Alura 2
@@ -21,7 +21,7 @@ Abaixo destaco os pontos importantes de cada uma das etapas e os 'perrengues' vo
 
 ## Etapas
 
-#### Parte 1: Tratamento de dados: entendendo como tratar dados com SQL
+### Parte 1: Tratamento de dados: entendendo como tratar dados com SQL
 
 #### Ferramentas utilizadas
 
@@ -31,7 +31,7 @@ Abaixo destaco os pontos importantes de cada uma das etapas e os 'perrengues' vo
 
 A base de dados pode ser encontrada em script/dump-analise_risco-202207271411.sql que está em um formato _DUMP_. 
 
-O dicionário de dados pode ser consultado em https://github.com/Mirlaa/Challenge-Data-Science-1ed/blob/main/Dados/README.md.
+O dicionário de dados pode ser consultado [aqui](https://github.com/Mirlaa/Challenge-Data-Science-1ed/blob/main/Dados/README.md).
 
 #### O desenvolvimento
 
