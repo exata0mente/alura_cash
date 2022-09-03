@@ -1,5 +1,5 @@
 /*
-drop table if exists analise_risco.id;
+drop table if exists analise_risco.ids;
 drop table if exists analise_risco.dados_mutuarios;
 drop table if exists analise_risco.emprestimos;
 drop table if exists analise_risco.historicos_banco;
@@ -11,13 +11,13 @@ use analise_risco;
 select * from analise_risco.dados_mutuarios;
 select * from analise_risco.emprestimos;
 select * from analise_risco.historicos_banco;
-select * from analise_risco.id;
+select * from analise_risco.ids;
 
 -- Analisar quais os tipos de dados
 describe analise_risco.dados_mutuarios;
 describe analise_risco.emprestimos;
 describe analise_risco.historicos_banco;
-describe analise_risco.id;
+describe analise_risco.ids;
 
 -- Renomeando as colunas
 alter table analise_risco.dados_mutuarios
@@ -44,11 +44,18 @@ alter table analise_risco.historicos_banco
     rename column cb_person_cred_hist_length to anos_primeira_solicitacao
 ;
 
-alter table analise_risco.id
+alter table analise_risco.ids
 	rename column person_id to id_solicitante,
     rename column loan_id to id_emprestimo,
     rename column cb_id to id_historico
 ;
+
+-- Contagens
+select count(0) from analise_risco.dados_mutuarios;
+select count(0) from analise_risco.emprestimos;
+select count(0) from analise_risco.historicos_banco;
+select count(0) from analise_risco.ids;
+
 
 -- Analisar quais os tipos de dados e corrigir inconsistências
 -- Dados mutuarios 
@@ -88,7 +95,8 @@ select MIN(anos_primeira_solicitacao), max(anos_primeira_solicitacao), avg(anos_
 select * from analise_risco.historicos_banco order by anos_primeira_solicitacao ;
 
 -- ID
-select * from analise_risco.id where id_solicitante is null;
-select * from analise_risco.id where id_emprestimo is null;
-select * from analise_risco.id where id_historico is null;
-select * from analise_risco.id order by id_historico
+select * from analise_risco.ids where id_solicitante is null;
+select * from analise_risco.ids where id_emprestimo is null;
+select * from analise_risco.ids where id_historico is null;
+select * from analise_risco.ids order by id_historico;
+

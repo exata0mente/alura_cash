@@ -28,7 +28,7 @@ alter table analise_risco.historicos_banco
     rename column cb_person_cred_hist_length to anos_primeira_solicitacao
 ;
 
-alter table analise_risco.id
+alter table analise_risco.ids
 	rename column person_id to id_solicitante,
     rename column loan_id to id_emprestimo,
     rename column cb_id to id_historico
@@ -44,14 +44,14 @@ alter table analise_risco.emprestimos add constraint pk_emprestimos primary key 
 alter table analise_risco.historicos_banco add constraint pk_historico_banco PRIMARY KEY(id_historico);
 
 -- Altero os tipos dessa tabela relacional para ficar do mesmo tipo das tabelas que serão cruzadas
-alter table analise_risco.id  
-	modify id_solicitante varchar(16),
-	modify id_emprestimo varchar(16),
-    modify id_historico varchar(16)
+alter table analise_risco.ids  
+	modify id_solicitante varchar(16) not null,
+	modify id_emprestimo varchar(16) not null,
+    modify id_historico varchar(16) not null
 ;
 
 -- Defino as relações desta tabela
-alter table analise_risco.id 
+alter table analise_risco.ids
 	add constraint fk_id_hist_solicitante FOREIGN KEY(id_solicitante) references analise_risco.dados_mutuarios(id_solicitante),
 	add constraint fk_id_hist_emprestimo  FOREIGN KEY(id_emprestimo) references analise_risco.emprestimos(id_emprestimo),
     add constraint fk_id_hist_historico   FOREIGN KEY(id_historico) references analise_risco.historicos_banco(id_historico)
@@ -97,7 +97,7 @@ select
     hist.anos_primeira_solicitacao, 
     case when coalesce(hist.flag_inadimplencia_hist, '') = '' then emp.flag_inadimplencia else hist.flag_inadimplencia_hist end as flag_inadimplencia_hist
 from
-	analise_risco.id id
+	analise_risco.ids id
 inner join
 	analise_risco.dados_mutuarios cad on (cad.id_solicitante = id.id_solicitante)
 inner join
@@ -106,6 +106,8 @@ inner join
 	analise_risco.historicos_banco hist on (hist.id_historico = id.id_historico)
 -- order by 16 desc
 ;
+
+
 
 -- Para identificar o diretório de exportação do MySQL
 show variables like '%secure%';
@@ -116,4 +118,3 @@ union all
 select * 
 from analise_risco.base_emprestimo_analise into outfile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\base_emprestimo_analise.csv'
 fields TERMINATED BY ';' enclosed by '"' lines TERMINATED BY '\n';
-
