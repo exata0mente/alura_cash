@@ -84,30 +84,34 @@ commit;
 
 -- Estou criando uma view para as alterações realizadas nas tabelas domínio sejam refletidas automáticamente neste relacionamento
 create or replace view analise_risco.base_emprestimo_analise as
-select 
-	cad.id_solicitante,
-    emp.id_emprestimo,
-    hist.id_historico,
-    cad.idade_solicitante, 
-    case when cad.salario_solicitante is null then round(emp.valor_solicitado / emp.percentual_renda, 0) else cad.salario_solicitante end as salario_solicitante, 
-    cad.situacao_propriedade, cad.tempo_trabalhado,
-    emp.motivo, emp.pontuacao, 
-    case when emp.valor_solicitado is null then round(cad.salario_solicitante * percentual_renda, 0) else emp.valor_solicitado end as valor_solicitado, 
-    emp.taxa_juros, emp.percentual_renda, emp.flag_inadimplencia,
-    hist.anos_primeira_solicitacao, 
-    case when coalesce(hist.flag_inadimplencia_hist, '') = '' then emp.flag_inadimplencia else hist.flag_inadimplencia_hist end as flag_inadimplencia_hist
-from
-	analise_risco.ids id
-inner join
-	analise_risco.dados_mutuarios cad on (cad.id_solicitante = id.id_solicitante)
-inner join
-	analise_risco.emprestimos emp on (emp.id_emprestimo = id.id_emprestimo)
-inner join
-	analise_risco.historicos_banco hist on (hist.id_historico = id.id_historico)
+	select 
+		cad.id_solicitante,
+		emp.id_emprestimo,
+		hist.id_historico,
+		cad.idade_solicitante, 
+		-- case when cad.salario_solicitante is null then round(emp.valor_solicitado / emp.percentual_renda, 0) else cad.salario_solicitante end as salario_solicitante, 
+		cad.salario_solicitante,
+		cad.situacao_propriedade, cad.tempo_trabalhado,
+		emp.motivo, emp.pontuacao, 
+		-- case when emp.valor_solicitado is null then round(cad.salario_solicitante * percentual_renda, 0) else emp.valor_solicitado end as valor_solicitado, 
+		emp.valor_solicitado,
+		emp.taxa_juros, emp.percentual_renda, emp.flag_inadimplencia,
+		hist.anos_primeira_solicitacao, 
+		-- case when coalesce(hist.flag_inadimplencia_hist, '') = '' then emp.flag_inadimplencia else hist.flag_inadimplencia_hist end as flag_inadimplencia_hist
+		hist.flag_inadimplencia_hist
+	from
+		analise_risco.ids id
+	inner join
+		analise_risco.dados_mutuarios cad on (cad.id_solicitante = id.id_solicitante)
+	inner join
+		analise_risco.emprestimos emp on (emp.id_emprestimo = id.id_emprestimo)
+	inner join
+		analise_risco.historicos_banco hist on (hist.id_historico = id.id_historico)
 -- order by 16 desc
 ;
 
 
+select * from analise_risco.historicos_banco ;
 
 -- Para identificar o diretório de exportação do MySQL
 show variables like '%secure%';
@@ -118,3 +122,6 @@ union all
 select * 
 from analise_risco.base_emprestimo_analise into outfile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\base_emprestimo_analise.csv'
 fields TERMINATED BY ';' enclosed by '"' lines TERMINATED BY '\n';
+
+
+select 1 from dual
