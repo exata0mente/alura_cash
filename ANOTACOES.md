@@ -19,3 +19,4 @@ Pra resolver, depois de uma rápida pesquisa, tive que utilizar o comando abaixo
 SET SQL_SAFE_UPDATES = 0
 ```
 
+## Semana 2

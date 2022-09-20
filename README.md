@@ -54,3 +54,14 @@ O mesmo eu fiz para a tabela `emprestimos` coluna `motivo`. Aqui porém não hav
 #### Resultados
 
 O script de tratamento, a _view_ resultante e o arquivo gerado podem ser consultados na pasta de [dados](dados/)
+
+### Parte 2 - Aprendendo com os dados: criando um modelo de previsão de inadimplência
+
+Tendo a base pronta para uso, retirei da base de estudos os registros que possuiam valores nulo e/ou outliers. Estes registros separo em uma base apartada para utilizar como mais um avaliador do modelo (a ideia é preencher os campos nulos, premissas ainda a definir, e testar o modelo). 
+
+Avaliando visualmente as proporções de inadimplência, foi possível notar os seguintes pontos de atenção:
+1. Empréstimos em que o solicitante possui uma casa alugada tem maior incidência de inadimplência em relação as outras situações de imóveis.
+1. A pontuação segue um padrão esperado, 'A' tem a menor quantidade de clientes inadimplentes enquanto G tem a maior
+1. A taxa de juros se mostra bem maior nos clientes inadimplentes em relação aos não inadimplentes.
+
+Aplicando a correlação entre as variáveis, podemos validar as observações acima.
