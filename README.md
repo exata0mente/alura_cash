@@ -57,12 +57,13 @@ O script de tratamento, a _view_ resultante e o arquivo gerado podem ser consult
 
 ### Parte 2 - Aprendendo com os dados: criando um modelo de previsão de inadimplência
 
-Tendo a base pronta para uso, retirei da base de estudos os registros que possuiam valores nulo e/ou outliers. Estes registros separo em uma base apartada para utilizar como mais um avaliador do modelo (a ideia é preencher os campos nulos, premissas ainda a definir, e testar o modelo). Identificamos uma correlação de inadimplência com as variáveis de situação da propriedade (Alugada), taxa de juros (quanto maior a taxa, maior a correlação) e classificações baixas (sendo A a mais alta e G a mais baixa).
+Tendo a base pronta para uso, retirei da base de estudos os registros que possuiam valores nulo e/ou outliers. Estes registros separo em uma base apartada para utilizar como mais um avaliador do modelo (a ideia é preencher os campos nulos, premissas ainda a definir, e testar o modelo). 
+Identificamos uma correlação de inadimplência com as variáveis de situação da propriedade (Alugada), taxa de juros (quanto maior a taxa, maior a correlação) e classificações baixas (sendo A a mais alta e G a mais baixa).
 Antes da construção do modelo, decidimos normalizar os dados pois há grandes diferenças nos campos que referem-se a valores financeiros como salário e valor de empréstimo solicitado. A normalização se fez necessária para não enviesarmos o algoritmo.
 
 Feito isso, testamos 3 algoritmos de *machine learning*: *Random Forest, Gradient Boost, Logistic Regression*
 
-O que apresentou melhor resultado foi o *Gradient Boost*.
+O que apresentou melhor resultado foi o *Gradient Boost*. Todos os modelos gerados foram salvos no diretório de [modelos](modelos/)
 
 
 
