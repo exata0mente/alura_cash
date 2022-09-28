@@ -16,8 +16,8 @@ Desse modo, solicito um conjunto de dados que contenha as informações de clien
 
 O desafio será dividio em 4 partes (semanas):
 1. [**Tratamento de dados: entendendo como tratar dados com SQL**](#parte-1-tratamento-de-dados-entendendo-como-tratar-dados-com-SQL)
-1. [**Aprendendo com os dados: criando um modelo de previsão de inadimplência**]
-1. [**Parte 3 - Analisando métricas: criando visualizações com o Power BI**]
+1. [**Aprendendo com os dados: criando um modelo de previsão de inadimplência**]()
+1. [**Parte 3 - Analisando métricas: criando visualizações com o Power BI**]()
 
 Abaixo destaco os pontos importantes de cada uma das etapas e os 'perrengues' vou deixar em minhas [anotações](ANOTACOES.md).
 
@@ -67,9 +67,15 @@ Feito isso, testamos 3 algoritmos de *machine learning*: *Random Forest, Gradien
 
 O que apresentou melhor resultado foi o *Gradient Boost*. Todos os modelos gerados foram salvos no diretório de [modelos](modelos/)
 
-### Parte 3 e 4- Analisando métricas: criando visualizações com o Power BI
+### Parte 3 e 4 - Analisando métricas: criando visualizações com o Power BI
 
 Agora com os modelos prontos e otimizados, vamos montar uma API que irá injetar no modelo os valores e devolver a predição de inadimplência e montar um _dashboard_ no PowerBI para trazer os resultados.
 
 Para a criação da API vamos utilizar o framework FastAPI que irá, localmente, montar um servidor que receberá as requisições. Quem consumirá esta API será o Power BI onde irei passar todos os campos treinados no modelo através de **parâmetros** e apresentar o resultado predito pelo modelo
 .
+
+### Parte Bônus
+
+Nesta parte irei utilizar os registros que foram separados por conter algum dado nulo, identificar uma forma de preenchê-lo com base na amostra que já temos, testar no modelo e potencialmente retreinar.
+
+Também será realizado uma melhoria na estética do PowerBI. **Será que dá para mostrar qual a _feature_ que mais pesou na classificação de uma solicitação específica?**
